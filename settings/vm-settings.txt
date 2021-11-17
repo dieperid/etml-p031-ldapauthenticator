@@ -1,0 +1,8 @@
+
+Windows Serveur
+User : Admin
+Password : root-user1
+
+Windows 10
+User : root
+Password : root

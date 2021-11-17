@@ -1,0 +1,15 @@
+User David :
+Username : daviddieperink
+Password : XyZ01.labdev
+
+User Stefan :
+Username : stefanpetrovic
+Password : XyZ02.labdev
+
+User Alexis :
+Username : alexisrojas
+Password : XyZ03.labdev
+
+User Samuel :
+Username : samuelhorler
+Password : XyZ04.labdev
