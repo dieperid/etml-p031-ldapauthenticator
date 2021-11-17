@@ -34,7 +34,15 @@
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.pnl1 = new System.Windows.Forms.Panel();
+            this.lbl7 = new System.Windows.Forms.Label();
+            this.lbl6 = new System.Windows.Forms.Label();
+            this.lbl5 = new System.Windows.Forms.Label();
+            this.lbl4 = new System.Windows.Forms.Label();
+            this.lbl3 = new System.Windows.Forms.Label();
+            this.lbl2 = new System.Windows.Forms.Label();
+            this.lbl1 = new System.Windows.Forms.Label();
             this.btnPass = new System.Windows.Forms.Button();
+            this.pnl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -91,10 +99,73 @@
             // 
             this.pnl1.BackColor = System.Drawing.Color.White;
             this.pnl1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnl1.Controls.Add(this.lbl7);
+            this.pnl1.Controls.Add(this.lbl6);
+            this.pnl1.Controls.Add(this.lbl5);
+            this.pnl1.Controls.Add(this.lbl4);
+            this.pnl1.Controls.Add(this.lbl3);
+            this.pnl1.Controls.Add(this.lbl2);
+            this.pnl1.Controls.Add(this.lbl1);
             this.pnl1.Location = new System.Drawing.Point(18, 185);
             this.pnl1.Name = "pnl1";
             this.pnl1.Size = new System.Drawing.Size(508, 248);
             this.pnl1.TabIndex = 5;
+            // 
+            // lbl7
+            // 
+            this.lbl7.AutoSize = true;
+            this.lbl7.Location = new System.Drawing.Point(200, 105);
+            this.lbl7.Name = "lbl7";
+            this.lbl7.Size = new System.Drawing.Size(0, 13);
+            this.lbl7.TabIndex = 6;
+            // 
+            // lbl6
+            // 
+            this.lbl6.AutoSize = true;
+            this.lbl6.Location = new System.Drawing.Point(200, 75);
+            this.lbl6.Name = "lbl6";
+            this.lbl6.Size = new System.Drawing.Size(0, 13);
+            this.lbl6.TabIndex = 5;
+            // 
+            // lbl5
+            // 
+            this.lbl5.AutoSize = true;
+            this.lbl5.Location = new System.Drawing.Point(200, 45);
+            this.lbl5.Name = "lbl5";
+            this.lbl5.Size = new System.Drawing.Size(0, 13);
+            this.lbl5.TabIndex = 4;
+            // 
+            // lbl4
+            // 
+            this.lbl4.AutoSize = true;
+            this.lbl4.Location = new System.Drawing.Point(200, 15);
+            this.lbl4.Name = "lbl4";
+            this.lbl4.Size = new System.Drawing.Size(0, 13);
+            this.lbl4.TabIndex = 3;
+            // 
+            // lbl3
+            // 
+            this.lbl3.AutoSize = true;
+            this.lbl3.Location = new System.Drawing.Point(15, 45);
+            this.lbl3.Name = "lbl3";
+            this.lbl3.Size = new System.Drawing.Size(0, 13);
+            this.lbl3.TabIndex = 2;
+            // 
+            // lbl2
+            // 
+            this.lbl2.AutoSize = true;
+            this.lbl2.Location = new System.Drawing.Point(15, 150);
+            this.lbl2.Name = "lbl2";
+            this.lbl2.Size = new System.Drawing.Size(0, 13);
+            this.lbl2.TabIndex = 1;
+            // 
+            // lbl1
+            // 
+            this.lbl1.AutoSize = true;
+            this.lbl1.Location = new System.Drawing.Point(15, 15);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(0, 13);
+            this.lbl1.TabIndex = 0;
             // 
             // btnPass
             // 
@@ -127,6 +198,8 @@
             this.Name = "frm1";
             this.Text = "Authentificator";
             this.Load += new System.EventHandler(this.Frm1_Load);
+            this.pnl1.ResumeLayout(false);
+            this.pnl1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -141,6 +214,13 @@
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Panel pnl1;
         private System.Windows.Forms.Button btnPass;
+        private System.Windows.Forms.Label lbl1;
+        private System.Windows.Forms.Label lbl3;
+        private System.Windows.Forms.Label lbl2;
+        private System.Windows.Forms.Label lbl4;
+        private System.Windows.Forms.Label lbl6;
+        private System.Windows.Forms.Label lbl5;
+        private System.Windows.Forms.Label lbl7;
     }
 }
 

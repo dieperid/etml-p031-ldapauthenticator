@@ -1,6 +1,10 @@
-﻿using System;
+﻿using Microsoft.Win32.SafeHandles;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -21,12 +25,6 @@ namespace ldap_authenticator
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frm1());
-
-            //Tests log4net
-            log.Info("Conneting to XXX.XX.XX.XX:YYY");
-            log.Info("LDAP Connection OK");
-            log.Error("Connection failed : cause");
-            Console.ReadLine();
         }
     }
 }

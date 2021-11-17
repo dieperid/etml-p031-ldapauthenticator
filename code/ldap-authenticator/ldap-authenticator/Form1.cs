@@ -1,12 +1,18 @@
 ﻿using System;
 using System.DirectoryServices;
 using System.Drawing;
+using System.Linq;
+using System.Net;
 using System.Windows.Forms;
 
 namespace ldap_authenticator
 {
     public partial class frm1 : Form
     {
+        /// <summary>
+        /// Instance objet log4net
+        /// </summary>
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public frm1()
         {
             InitializeComponent();
@@ -17,71 +23,74 @@ namespace ldap_authenticator
             
         }
 
+        private DirectorySearcher search;
+
         private string _path { get; set; }
-        private string _filterAttribute { get; set; }
 
         public bool IsAuthenticated(string domain, string username, string pwd)
         {
             string domainAndUsername = domain + "\\" + username;
             DirectoryEntry entry = new DirectoryEntry(_path, domainAndUsername, pwd);
+            search = new DirectorySearcher(entry);
             try
             {
-                object obj = entry.NativeObject;
-                DirectorySearcher search = new DirectorySearcher(entry);
+                var Address = Dns.GetHostAddresses(domain).FirstOrDefault();
+                log.Info("Connecting to" + " " + Address.ToString());
                 search.Filter = "(SAMAccountName=" + username + ")";
-                search.PropertiesToLoad.Add("cn");
+                object obj = entry.NativeObject;             
+
                 SearchResult result = search.FindOne();
-                if ((result == null))
+                if (result == null)
                 {
-                    return false;
+                    return false;               
                 }
-
-                _path = result.Path;
-                _filterAttribute = result.Properties["cn"][0].ToString();
-
             }
             catch (Exception ex)
-            {
+            {             
+                // Si l'utilisateur n'existe pas dans le domaine
+                MessageBox.Show("L'utilisateur n'existe pas");
+                log.Error("Connection failed: user not found");
                 return false;
             }
-
             return true;
+        }
+
+        public static string GetProperty(SearchResult searchResult, string PropertyName)
+        {
+            if (searchResult.Properties.Contains(PropertyName))
+            {
+                return searchResult.Properties[PropertyName][0].ToString();
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            int Y = 10;
-            int compt = 1;
-
-            for (int i = 1; i < 4; i++)
-            {
-                Label lbl = new Label();
-                lbl.Location = new Point(10, Y);
-                lbl.Name = "lbl" + i;
-                lbl.Size = new Size(75, 23);
-                lbl.Text = "lable_" + i;
-                pnl1.Controls.Add(lbl);
-
-                Y = Y + 23;
-            }
-
-            if (IsAuthenticated("labdev.local", txtboxUsername.Text, txtboxPassword.Text) == false)
-            {
-                // not exist in active directory!
-                
-            }
-            else
+            if (IsAuthenticated("labdev.local", txtboxUsername.Text, txtboxPassword.Text))
             {
                 // user is exist in active directory
+                MessageBox.Show("Bienvenue!");
+                log.Info("LDAP Connection OK");
 
+                foreach (SearchResult sResultSet in search.FindAll())
+                {
+                    lbl1.Text = "User Logon Name : " + txtboxUsername.Text;
+                    lbl2.Text = "Last Password Changed : " + GetProperty(sResultSet, "whenchanged");
+                    lbl3.Text = "Group(s) Member(s) : " + GetProperty(sResultSet, "extensionAttribute3");
+                    lbl4.Text = "First Name : " + GetProperty(sResultSet, "givenName");
+                    lbl5.Text = "Last Name : " + GetProperty(sResultSet, "sn");
+                    lbl6.Text = "Display Name : " + GetProperty(sResultSet, "cn");
+                    lbl7.Text = "E-mail-Addresses : " + GetProperty(sResultSet, "mail");
+                }
             }
         }
-
         private void BtnPass_MouseDown(object sender, MouseEventArgs e)
         {
             txtboxPassword.PasswordChar = default;
         }
-
         private void BtnPass_MouseUp(object sender, MouseEventArgs e)
         {
             txtboxPassword.PasswordChar = '*';
