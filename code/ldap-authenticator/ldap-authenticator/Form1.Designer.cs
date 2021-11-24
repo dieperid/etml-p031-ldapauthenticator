@@ -197,7 +197,6 @@
             this.Controls.Add(this.btnLogin);
             this.Name = "frm1";
             this.Text = "Authentificator";
-            this.Load += new System.EventHandler(this.Frm1_Load);
             this.pnl1.ResumeLayout(false);
             this.pnl1.PerformLayout();
             this.ResumeLayout(false);

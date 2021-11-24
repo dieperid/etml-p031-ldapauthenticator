@@ -1,21 +1,14 @@
-﻿using Microsoft.Win32.SafeHandles;
+﻿///ETML
+///Auteur : Alexis Rojas, David Dieperink, Stefan Petrovic, Samuel Hörler
+///Date : 24.11.2021
+///Description: Gère le déroulement de l'application 
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ldap_authenticator
 {
     static class Program
     {
-        /// <summary>
-        /// Instance objet log4net
-        /// </summary>
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         /// <summary>
         /// Point d'entrée principal de l'application.
         /// </summary>
