@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿///ETML
+///Auteur : Alexis Rojas, David Dieperink, Stefan Petrovic, Samuel Hörler
+///Date : 24.11.2021
+///Description: Gère le déroulement de l'application 
+using System;
 using System.Windows.Forms;
 
 namespace ldap_authenticator
 {
     static class Program
     {
-        /// <summary>
-        /// Instance objet log4net
-        /// </summary>
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         /// <summary>
         /// Point d'entrée principal de l'application.
         /// </summary>
@@ -21,12 +18,6 @@ namespace ldap_authenticator
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frm1());
-
-            //Tests log4net
-            log.Info("Conneting to XXX.XX.XX.XX:YYY");
-            log.Info("LDAP Connection OK");
-            log.Error("Connection failed : cause");
-            Console.ReadLine();
         }
     }
 }
