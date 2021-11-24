@@ -1,9 +1,11 @@
 ﻿using System;
 using System.DirectoryServices;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace ldap_authenticator
 {
@@ -24,8 +26,9 @@ namespace ldap_authenticator
         }
 
         private DirectorySearcher search;
-
+        
         private string _path { get; set; }
+
 
         public bool IsAuthenticated(string domain, string username, string pwd)
         {
@@ -69,7 +72,13 @@ namespace ldap_authenticator
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            if (IsAuthenticated("labdev.local", txtboxUsername.Text, txtboxPassword.Text))
+            // Récupèration des données du fichier config.json 
+            StreamReader r = new StreamReader("ldap-authenticator.json");
+            string jsonString = r.ReadToEnd();
+
+            ConfigServer serverData = JsonConvert.DeserializeObject<ConfigServer>(jsonString);
+
+            if (IsAuthenticated(serverData.DomainName, txtboxUsername.Text, txtboxPassword.Text))
             {
                 // user is exist in active directory
                 MessageBox.Show("Bienvenue!");
@@ -95,5 +104,9 @@ namespace ldap_authenticator
         {
             txtboxPassword.PasswordChar = '*';
         }
+    }
+    class ConfigServer
+    {
+        public string DomainName { get; set; }
     }
 }
